@@ -18,3 +18,5 @@
 - 搭建网络代码，使用Pytorch搭建deeplabv3网络（基于ResNet）
 - 编写train.py训练代码，写好训练流程、保存模型、保存loss等信息
 - 训练完成之后，使用保存的模型进行预测,对预测出的图片进行涂色，使之可视化
+## 实验详细流程
+- [数据简介](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/%E6%95%B0%E6%8D%AE%E7%AE%80%E4%BB%8B.md)
