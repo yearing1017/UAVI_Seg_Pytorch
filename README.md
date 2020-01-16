@@ -20,3 +20,4 @@
 - 训练完成之后，使用保存的模型进行预测,对预测出的图片进行涂色，使之可视化
 ## 实验详细流程
 - [数据简介](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/%E6%95%B0%E6%8D%AE%E7%AE%80%E4%BB%8B.md)
+- [数据切割](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/%E6%95%B0%E6%8D%AE%E5%88%87%E5%89%B2.md)
