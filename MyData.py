@@ -23,14 +23,10 @@ class MyDataset(Dataset):
     def __getitem__(self, idx):
         image_name = os.listdir('data/dataset1/images_prepped_train')[idx]
         image = cv2.imread('data/dataset1/images_prepped_train/' + image_name)
-        # 读label
-        mask_name = os.listdir('data/dataset1/annotations_prepped_train')[idx]
-        mask = cv2.imread('data/dataset1/annotations_prepped_train/'+ mask_name, 0)
-        mask = mask/255
-        mask = mask.astype('uint8')
-        label = onehot(mask, 5, 640, 640)
-        label = label.transpose(2, 0, 1)
-        label = torch.FloatTensor(label)
+        # 读label,因为对应的label和原图对应，取一致的名字
+        #mask_name = os.listdir('data/dataset1/annotations_prepped_train')[idx]
+        mask = cv2.imread('data/dataset1/annotations_prepped_train/'+ image_name, 0)
+        label = torch.LongTensor(mask)
 
         if self.transform:
             image = self.transform(image)
