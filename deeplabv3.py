@@ -217,7 +217,7 @@ def resnet50(pretrained=False, **kwargs):
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
     # [3,4,6,3]对应block_num,残差块的数量
-    model = ResNet(Bottleneck, [3, 4, 6, 3], num_classes=5, **kwargs)
+    model = ResNet(Bottleneck, [3, 4, 6, 3], num_classes=4, **kwargs)
     if pretrained:
         model.load_state_dict(model_zoo.load_url(model_urls['resnet50']))
     return model
@@ -227,7 +227,7 @@ def resnet101(pretrained=False, num_groups=None, weight_std=False, **kwargs):
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
-    model = ResNet(Bottleneck, [3, 4, 23, 3], num_classes=5,num_groups=num_groups, weight_std=weight_std, **kwargs)
+    model = ResNet(Bottleneck, [3, 4, 23, 3], num_classes=4,num_groups=num_groups, weight_std=weight_std, **kwargs)
     if pretrained:
         model_dict = model.state_dict()
         if num_groups and weight_std:
@@ -249,7 +249,7 @@ def resnet152(pretrained=False, **kwargs):
     Args:
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
-    model = ResNet(Bottleneck, [3, 8, 36, 3], num_classes=5, **kwargs)
+    model = ResNet(Bottleneck, [3, 8, 36, 3], num_classes=4, **kwargs)
     if pretrained:
         model.load_state_dict(model_zoo.load_url(model_urls['resnet152']))
     return model
@@ -258,7 +258,7 @@ if __name__ == "__main__":
     net = resnet50()
     x = torch.rand((4,3,640,640))
     output = net(x)
-    print(output.shape) #(4,5,640,640)
+    print(output.shape) #(4,4,640,640)
 '''
 # 如下测试，不会执行最后的unsample步骤，所以shape不和原来一样
 x = torch.rand((4,3,640,640))
@@ -276,5 +276,5 @@ layer1  output shape:	 torch.Size([4, 256, 160, 160])
 layer2  output shape:	 torch.Size([4, 512, 80, 80])
 layer3  output shape:	 torch.Size([4, 1024, 40, 40])
 layer4  output shape:	 torch.Size([4, 2048, 40, 40])
-aspp  output shape:	 torch.Size([4, 5, 40, 40])
+aspp  output shape:	 torch.Size([4, 4, 40, 40])
 '''
