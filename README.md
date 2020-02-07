@@ -30,4 +30,4 @@
 - [predict.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/predict.py)：使用生成的训练模型来预测，并给预测图片进行涂色显示
 
 ## 实验分割结果展示
-![]()
+![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/predict.png)
