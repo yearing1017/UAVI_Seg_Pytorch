@@ -31,3 +31,6 @@
 
 ## 实验分割结果展示
 ![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/predict.png)
+
+## 实验待优化问题
+- MIoU计算：![MIoUData.py]()：读取label和predict图像，以tensor形式，batch_size=4传入
