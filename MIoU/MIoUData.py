@@ -6,6 +6,10 @@ from torchvision import transforms
 from PIL import Image
 import cv2
 
+transform = transforms.Compose([
+    transforms.ToTensor()
+])
+
 
 class MIoUDataset(Dataset):
 
@@ -21,7 +25,9 @@ class MIoUDataset(Dataset):
         label = Image.open('data/dataset1/annotations_prepped_train/' + label_name)
         # 读 predict
         predict = Image.open('predict/' + label_name)
-
+        if self.transform:
+            label = self.transform(label)
+            predict = self.transform(predict)
         return label, predict
 
 data = MIoUDataset()
