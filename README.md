@@ -30,6 +30,7 @@
 - [predict.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/predict.py)：使用生成的训练模型来预测，并给预测图片进行涂色显示
 
 ## 实验分割结果展示
+- 
 ![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/predict.png)
 
 ## 实验待优化问题-MIoU
@@ -41,4 +42,5 @@
 - MyData_v0211版本，cv2以BGR模式读入训练集，先改为RGB图像，再进行nomalize初始化，使用的mean和std数值都为Imagenet数据集预训练得到的，但是训练完成之后，预测结果有偏差，如下：
 ![v0211predict](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/1-2.jpg)
 
-- v0217版本：修改预测方法，以一张一张读入进行预测，解决之前的大部分涂色失败问题。
+- v0217版本：修改预测方法，以一张一张读入进行预测，解决之前的大部分涂色失败问题。效果如下：
+![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/DUIBI.jpg)
