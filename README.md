@@ -30,7 +30,10 @@
 - [predict.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/predict.py)：使用生成的训练模型来预测，并给预测图片进行涂色显示
 
 ## 实验分割结果展示
-- 
+- 整体效果不行，如下，v0217版本已解决,详见下方优化结果：
+![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/duibi1.jpg)
+
+- 单张的效果还可以，如下：
 ![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/predict.png)
 
 ## 实验待优化问题-MIoU
