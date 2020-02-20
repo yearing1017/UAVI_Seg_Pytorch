@@ -30,7 +30,7 @@
 - [predictv0217.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/predictv0217.py)：使用生成的训练模型来预测，并给预测图片进行涂色显示
 
 ## 5. 实验数据记录
-- 基于ResNet-152的deeplabv3得到的具体参数及有关结果如下：
+- 基于ResNet-152的deeplabv3训练epoch=200得到的具体参数及有关结果如下：
   - 使用图像增强进行训练集的生成，具体的数目为：训练集1944张、验证集648张、测试集162张
   - 图像的预处理：无标准化、只进行了归一化
   - 损失函数：CrossEntropyLoss
