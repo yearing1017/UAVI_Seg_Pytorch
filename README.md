@@ -91,3 +91,9 @@
 ## 9. 预测问题-已解决v0217
 - v0217版本：修改预测方法，以一张一张读入进行预测，解决之前的大部分涂色失败问题。效果如下：
 ![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/DUIBI.jpg)
+
+## 10. SGD与Adam优化器预测效果对比
+- v0219：仅仅改动优化器为Adam，lr=1e-3
+![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/adam-1.jpg)
+
+![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/adam-2.jpg)
