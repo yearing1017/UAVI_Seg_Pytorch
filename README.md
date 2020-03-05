@@ -3,7 +3,9 @@
 ## 1. 实验数据介绍
 - 一副无人机拍摄的高分辨率矿区影像图
 - 实验室进行标注的对应label
-- 进行裁剪后的640 x 640的图像与label数据
+- v0219版本：进行裁剪后的640 x 640的图像与label数据
+- v0225&v0301版本：进行裁剪后的640 x 640的图像与label数据，并更换测试集
+
 ## 2. 实验环境介绍
 - GPU等服务器资源不加介绍
 - Python3.6、Pytorch、OpenCV、torchvision、numpy等必备环境
@@ -18,6 +20,7 @@
 - 搭建网络代码，使用Pytorch搭建deeplabv3网络（基于ResNet）
 - 编写train.py训练代码，写好训练流程、保存模型、保存loss等信息
 - 训练完成之后，使用保存的模型进行预测,对预测出的图片进行涂色，使之可视化
+- 根据预测结果进行kappa系数、mIoU指标的计算
 ## 4. 实验详细流程
 - [数据简介](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/%E6%95%B0%E6%8D%AE%E7%AE%80%E4%BB%8B.md)
 - [数据切割](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/%E6%95%B0%E6%8D%AE%E5%88%87%E5%89%B2.md)
@@ -28,6 +31,8 @@
 - [deeplabv3论文笔记](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/Deeplab_v3.md)
 - [train.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/train.py)：训练程序的代码
 - [predictv0217.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/predictv0217.py)：使用生成的训练模型来预测，并给预测图片进行涂色显示
+- [MIoU指标]()
+- [Kappa系数]()
 
 ## 5. 实验数据记录
 - 基于ResNet-152的deeplabv3训练epoch=200得到的具体参数及有关结果如下：
