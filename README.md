@@ -42,6 +42,7 @@
   - 损失函数：CrossEntropyLoss
   - 优化器：SGD、lr=1e-3、动量=0.9；  v0219版本测试Adam优化器、lr=1e-3
   - v0225版本&v0301版本:Adam优化器、lr=1e-3
+  
 
 ### 5.1 test测试数据集-v0219
 
