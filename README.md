@@ -31,7 +31,7 @@
 - [deeplabv3论文笔记](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/Deeplab_v3.md)
 - [train.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/train.py)：训练程序的代码
 - [predictv0217.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/predictv0217.py)：使用生成的训练模型来预测，并给预测图片进行涂色显示
-- [MIoU指标]()
+- [MIoU指标](https://yearing1017.site/2020/02/17/MIoU-PyTorch/)
 - [Kappa系数]()
 
 ## 5. 实验数据记录
