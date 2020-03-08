@@ -31,8 +31,8 @@
 - [deeplabv3论文笔记](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/Deeplab_v3.md)
 - [train.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/train.py)：训练程序的代码
 - [predictv0217.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/predictv0217.py)：使用生成的训练模型来预测，并给预测图片进行涂色显示
-- [MIoU指标计算](https://yearing1017.site/2020/02/17/MIoU-PyTorch/)
-- [Kappa系数计算](https://yearing1017.site/2020/02/27/基于混淆矩阵的Kappa系数的计算/)
+- [MIoU指标计算](http://yearing1017.cn/2020/02/17/MIoU-PyTorch/)
+- [Kappa系数计算](http://yearing1017.cn/2020/02/27/基于混淆矩阵的Kappa系数的计算/)
 
 ## 5. 实验数据记录
 - 基于ResNet-152的deeplabv3训练epoch=200得到的具体参数及有关结果如下：
