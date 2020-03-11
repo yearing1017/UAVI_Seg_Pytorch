@@ -44,7 +44,7 @@
   - v0225版本&v0301版本:Adam优化器、lr=1e-3
   - v0225版本：deeplabv3-resnet152
   - v0301版本：deeplabv3-resnet50
-  
+  - v0304版本：将简单留出验证改为k折交叉验证
 
 ### 5.1 test测试数据集-v0219
 
