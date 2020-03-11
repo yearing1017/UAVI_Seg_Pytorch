@@ -4,7 +4,6 @@ import torch.nn as nn
 from torch.utils.data import DataLoader, Dataset, random_split,Subset
 from sklearn.model_selection import ShuffleSplit
 from torchvision import transforms
-from PIL import Image
 import cv2
 
 # 数据操作
