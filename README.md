@@ -47,7 +47,13 @@
   - v0304版本：deeplabv3-resnet152，将简单留出验证改为5折交叉验证
   - V3p-101： deeplabv3+-resnet101 + 5折交叉验证
   - V3p-152： deeplabv3+-resnet152 + 5折交叉验证
-
+- 待实现想法
+  - [ ] Pytorch求出所以训练图像的mean和std值，加入实验
+  - [ ] 数据增强加入随机裁剪操作，并双线性插值pad至320大小，投入训练
+  - [ ] 使用CCNet单独训练
+  - [ ] CCNet与deeplabv3共同使用，将注意力模块加入deeplabv3
+  - [ ] DAN网络单独训练
+  - [ ] DAN模块并行加入deeplabv3网络中
 ### 5.1 test测试数据集-v0219
 
 #### 5.1.1 SGD与Adam整体平均像素acc及miou对比-下为Adam
