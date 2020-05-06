@@ -49,6 +49,7 @@
   - V3p-152： deeplabv3+-resnet152 + 5折交叉验证
   - DANet_res：danet-resnet152 + 5折交叉验证
   - Deeplabv3_dan：deeplabv3-dan-resnet152 + 5折交叉验证
+  - CCNet：ccnet-resnet152 + 5折交叉验证
 
 - **待实现想法**
   - [ ] Pytorch求出所以训练图像的mean和std值，加入实验
