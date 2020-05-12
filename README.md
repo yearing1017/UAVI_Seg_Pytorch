@@ -59,7 +59,9 @@
   - [x] 使用CCNet单独训练
     - v0403版本：只使用了ccnet注意力模块的输出上采样，结果为不收敛，但是使用epoch-8.pth测试有点效果
     - 后期测试：将x与x_dsn特征融合，进行测试，测试结果如下，可以看出，较danet单独训练，结果稍好，车辆acc例外
-  - [ ] CCNet与deeplabv3共同使用，将注意力模块加入deeplabv3
+  - [x] CCNet与deeplabv3共同使用，将注意力模块加入deeplabv3
+    - v0509版本：将ccnet模块与aspp模块并行，cat两个结果，最后进行分割。整体Acc、MIoU、Kappa都达到了最高
+    - v0509版本：只有道路和车辆的准确率低于以往的实验
   - [x] DAN网络单独训练
     - danet_drn_v0408版本：output包括feat_sum、pam_out、cam_out，采用辅助loss训练，结果一塌糊涂
     - danet_v0408版本：更换backbone网络为resnet-152，替换deeplabv3的aspp模块，不使用辅助loss，使用feat_sum进行结果的分割，结果详见下表Danet0408
