@@ -66,6 +66,8 @@
     - danet_drn_v0408版本：output包括feat_sum、pam_out、cam_out，采用辅助loss训练，结果一塌糊涂
     - danet_v0408版本：更换backbone网络为resnet-152，替换deeplabv3的aspp模块，不使用辅助loss，使用feat_sum进行结果的分割，结果详见下表Danet0408
   - [x] DAN模块并行加入deeplabv3网络中，实验数据如下所示
+  - [ ] 将deeplabv3的backbone网络Resnet换为ResNeSt，目前测试版本：resnest-v0518
+  
 ### 5.1 test测试数据集-v0219
 
 #### 5.1.1 SGD与Adam整体平均像素acc及miou对比-下为Adam
