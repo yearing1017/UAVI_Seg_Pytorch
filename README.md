@@ -69,7 +69,7 @@
   - [x] DAN模块并行加入deeplabv3网络中，实验数据如下所示
   - [x] 将deeplabv3的backbone网络Resnet换为ResNeSt，目前测试版本：resnest-v0518
     - 此版本：根据[代码](https://github.com/zhanghang1989/ResNeSt)修改，去除aspp后的层，模仿deeplabv3-resnet进行修改，效果一般，仅仅提升了道路的识别
-  - [ ] 根据@张航作者的代码进行更改得出，deeplabv3-resnest，未测试
+  - [ ] 根据[@张航作者的代码](https://github.com/zhanghang1989/PyTorch-Encoding/blob/master/encoding/models/sseg/deeplab.py)进行更改得出，deeplabv3-resnest，未测试
   
 ### 5.1 test测试数据集-v0219
 
