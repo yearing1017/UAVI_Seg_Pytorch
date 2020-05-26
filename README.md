@@ -27,9 +27,11 @@
 - [灰度label可视化](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/%E7%81%B0%E5%BA%A6label%E5%8F%AF%E8%A7%86%E5%8C%96.md)：由于label是1通道的图像，直观上是黑色图像，写代码使得同类别像素一个颜色进行可视化
 - [数据增强_Data_Augmentation.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/Data_Augmentation.py)：离线数据增强，对图像进行随机旋转、颜色抖动、高斯噪声处理；
 - [数据载入及数据划分](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MyData.py)：v0304版本之前的数据载入方式，使用简单留出法划分训练集、验证集
+- [基于k折交叉验证方式的数据载入及数据划分](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MyData_kfold.py)：基于k折交叉验证，避免了因偶然因素引起的验证集的不同（验证集随机划分，每次实验结果都会有影响）
 - [deeplabv3.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/deeplabv3.py)：基于pytorch的deeplab_v3网络搭建代码
 - [deeplabv3论文笔记](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/Deeplab_v3.md)：论文Rethinking Atrous Convolution for Semantic Image Segmentation的阅读笔记
-- [train.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/train.py)：训练程序的代码
+- [train.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/train.py)：v0304版本之前训练程序的代码，基于简单留出验证
+- [train_kfold.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/train_fold.py)：基于交叉验证方式的训练程序的代码
 - [predictv0217.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/predictv0217.py)：使用生成的训练模型来预测，并给预测图片进行涂色显示
 - [MIoU指标计算](http://yearing1017.cn/2020/02/17/MIoU-PyTorch/)：使用PyTorch基于混淆矩阵计算MIoU、Acc、类别Acc等指标
 - [Kappa系数计算](http://yearing1017.cn/2020/02/27/基于混淆矩阵的Kappa系数的计算/)：使用PyTorch基于混淆矩阵计算Kappa系数评价指标
