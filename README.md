@@ -17,15 +17,15 @@
 - 对数据进行数据增强，切割完成才有对应的几百张数据，增强至几千张
 - 增强后的数据也要一对一对应好，建议一开始就取两者相同的图像名，使用可视化进行测试
 - 数据划分，分为训练集、验证集、测试集；按照6:2:2的比例
-- 搭建网络代码，使用Pytorch搭建deeplabv3网络（基于ResNet）
+- 搭建网络代码，使用Pytorch搭建deeplabv3网络（基于ResNet），后期加入多种trick进行测试
 - 编写train.py训练代码，写好训练流程、保存模型、保存loss等信息
 - 训练完成之后，使用保存的模型进行预测,对预测出的图片进行涂色，使之可视化
 - 根据预测结果进行kappa系数、mIoU指标的计算
-## 4. 实验详细流程
+## 4. 实验部分代码简介
 - [数据简介](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/%E6%95%B0%E6%8D%AE%E7%AE%80%E4%BB%8B.md)
 - [数据切割](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/%E6%95%B0%E6%8D%AE%E5%88%87%E5%89%B2.md)
 - [灰度label可视化](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/%E7%81%B0%E5%BA%A6label%E5%8F%AF%E8%A7%86%E5%8C%96.md)
-- [数据增强_Data_Augmentation.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/Data_Augmentation.py)
+- [数据增强_Data_Augmentation.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/Data_Augmentation.py)：离线数据增强，对图像进行
 - [数据载入及数据划分](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MyData.py)
 - [deeplabv3.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/deeplabv3.py)：基于pytorch的deeplab_v3网络搭建代码
 - [deeplabv3论文笔记](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/Deeplab_v3.md)
@@ -34,8 +34,8 @@
 - [MIoU指标计算](http://yearing1017.cn/2020/02/17/MIoU-PyTorch/)
 - [Kappa系数计算](http://yearing1017.cn/2020/02/27/基于混淆矩阵的Kappa系数的计算/)
 
-## 5. 实验数据记录
-- 基于ResNet-152的deeplabv3训练epoch=200得到的具体参数及有关结果如下：
+## 5. 实验版本数据记录
+- 本实验有多个版本，具体实验详情如下：
   - 使用图像增强进行训练集的生成，640大小的图像：训练集1944张、验证集648张、测试集162张
   - v0225版本&v0301版本，320大小的图像：训练集9072张、验证集2268张、测试集378张
   - 图像的预处理：无标准化、只进行了归一化
