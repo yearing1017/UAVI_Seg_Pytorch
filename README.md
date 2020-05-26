@@ -107,26 +107,30 @@
 | ResNeSt0518 | 0.9437 | 0.7143 | 0.8057 | 0.9765 | 0.8315 | 0.9184 | 0.4154 |
 
 ## 6. 实验分割结果展示
-- 整体效果不行，如下，v0217版本已解决,详见下方优化结果：
-![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/duibi1.jpg)
+- v0304版本实验结果：原图、label、预测；三者对比如下：
+![](https://blog-1258986886.cos.ap-beijing.myqcloud.com/yearing1017/deeplabv3_0304.png)
 
-- 单张的效果还可以，如下：
-![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/predict.png)
+- Danet0420版本实验结果：原图、label、预测；三者对比如下：
+![](https://blog-1258986886.cos.ap-beijing.myqcloud.com/yearing1017/danet_v3.jpg)
 
-## 7. 实验待优化问题-MIoU-已解决v0217
+- CCNet版本实验结果：原图、label、预测；三者对比如下：
+![](https://blog-1258986886.cos.ap-beijing.myqcloud.com/yearing1017/ccnet0509.jpg)
+
+## 7. 实验优化问题记录
+### 7.1 实验优化问题解决记录-MIoU-v0217
 - MIoU数据：[MIoUData.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MIoU/MIoUData.py)：读取label和predict图像，以tensor形式，batch_size=4传入----v0210
 - MIoU的计算：[testMIoU.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MIoU/testMIoU.py)：将传入的tensor转为np的array，再执行flatten()进行一维化，每4个图像进行计算miou，最后求平均的miou
 - 问题：计算得到的MIoU都为1.0，怀疑原因，中间的float强转int，最后得到的数值都为1
 - 解决v0217：修改读入方式，使用CV2直接读入，不变为tensor，详见[MIoUCalv0217.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MIoU/MIoUCalv0217.py)，[MIoUDatav0217.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MIoU/MIoUDatav0217.py)
-## 8. 实验待优化问题-预处理
+### 7.2 实验待优化问题-预处理
 - MyData_v0211版本，cv2以BGR模式读入训练集，先改为RGB图像，再进行nomalize初始化，使用的mean和std数值都为Imagenet数据集预训练得到的，但是训练完成之后，预测结果有偏差，如下：
 ![v0211predict](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/1-2.jpg)
 
-## 9. 预测问题-已解决v0217
+### 7.3 预测问题-已解决v0217
 - v0217版本：修改预测方法，以一张一张读入进行预测，解决之前的大部分涂色失败问题。效果如下：
 ![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/DUIBI.jpg)
 
-## 10. SGD与Adam优化器预测效果对比
+### 7.4 SGD与Adam优化器预测效果对比
 - v0219：仅仅改动优化器为Adam，lr=1e-3
 ![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/adam-1.jpg)
 
