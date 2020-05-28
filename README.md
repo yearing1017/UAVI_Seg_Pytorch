@@ -53,7 +53,8 @@
   - Deeplabv3_dan：deeplabv3-dan-resnet152 + 5折交叉验证
   - CCNet0403：ccnet-resnet152 + 5折交叉验证
   - CCNet0509：deeplabv3-ccnet-resnet152 +5折交叉验证
-- **待实现想法**
+
+### 5.1 一些有关实验改进的新想法
   - [ ] Pytorch求出所以训练图像的mean和std值，加入实验
     - 存在疑问：见到的标准化都是采用的在线数据增强，离线增强数据该如何使用该tips
   - [ ] 数据增强加入随机裁剪操作，并双线性插值pad至320大小(不能pad，标签pad就不是真实值)，投入训练
@@ -72,17 +73,18 @@
   - [x] 将deeplabv3的backbone网络Resnet换为ResNeSt，目前测试版本：resnest-v0518
     - 此版本：根据[代码](https://github.com/zhanghang1989/ResNeSt)修改，去除aspp后的层，模仿deeplabv3-resnet进行修改，效果一般，仅仅提升了道路的识别
   - [ ] 根据[@张航作者的代码](https://github.com/zhanghang1989/PyTorch-Encoding/blob/master/encoding/models/sseg/deeplab.py)进行更改得出，deeplabv3-resnest，未测试
-  
-### 5.1 test测试数据集-v0219
+  - [ ] 目前的实验目标：提高车辙的识别率（道路的标注中，有一部分是车轮轧过的车辙），最怀疑是数据量不够
 
-#### 5.1.1 SGD与Adam整体平均像素acc及miou对比-下为Adam
+### 5.2 test测试数据集-v0219
+
+#### 5.2.1 SGD与Adam整体平均像素acc及miou对比-下为Adam
 
 |         acc        |        MIoU        |
 | :----------------: | :----------------: |
 | 0.9263767325704164 | 0.4807448577750288 |
 | 0.9337385405707201 | 0.47286513489126114|
 
-#### 5.1.2 类别平均像素acc-v0219
+#### 5.2.2 类别平均像素acc-v0219
 
 | 类别 |        SGD         |        Adam        |
 | :--: | :----------------: | :----------------: |
