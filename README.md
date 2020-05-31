@@ -74,6 +74,7 @@
     - 此版本：根据[代码](https://github.com/zhanghang1989/ResNeSt)修改，去除aspp后的层，模仿deeplabv3-resnet进行修改，效果一般，仅仅提升了道路的识别
   - [ ] 根据[@张航作者的代码](https://github.com/zhanghang1989/PyTorch-Encoding/blob/master/encoding/models/sseg/deeplab.py)进行更改得出，deeplabv3-resnest，未测试
   - [ ] 目前的实验目标：提高车辙的识别率（道路的标注中，有一部分是车轮轧过的车辙），最怀疑是数据量不够
+  - [ ] 关于数据增强：重新审视了代码，测试了增强的结果；其中，颜色抖动、随机旋转有效；高斯噪声处理无效是原图；
 
 ### 5.2 test测试数据集-v0219
 
