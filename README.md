@@ -52,7 +52,9 @@
   - DANet_res：danet-resnet152 + 5折交叉验证
   - Deeplabv3_dan：deeplabv3-dan-resnet152 + 5折交叉验证
   - CCNet0403：ccnet-resnet152 + 5折交叉验证
-  - CCNet0509：deeplabv3-ccnet-resnet152 +5折交叉验证
+  - CCNet0509：deeplabv3-ccnet-resnet152 + 5折交叉验证
+  - ResNeSt0518：deeplabv3-resnest152 + 5折交叉验证（此代码修改自resnest分类网络代码）
+  - ResNeSt0525：deeplabv3-resnest101 + 5折交叉验证（此代码修改自resnest用于分割的代码）
 
 ### 5.1 一些有关实验改进的新想法
   - [ ] Pytorch求出所以训练图像的mean和std值，加入实验
@@ -72,7 +74,7 @@
   - [x] DAN模块并行加入deeplabv3网络中，实验数据如下所示
   - [x] 将deeplabv3的backbone网络Resnet换为ResNeSt，目前测试版本：resnest-v0518
     - 此版本：根据[代码](https://github.com/zhanghang1989/ResNeSt)修改，去除aspp后的层，模仿deeplabv3-resnet进行修改，效果一般，仅仅提升了道路的识别
-  - [ ] 根据[@张航作者的代码](https://github.com/zhanghang1989/PyTorch-Encoding/blob/master/encoding/models/sseg/deeplab.py)进行更改得出，deeplabv3-resnest，未测试
+  - [x] 根据[@张航作者的代码](https://github.com/zhanghang1989/PyTorch-Encoding/blob/master/encoding/models/sseg/deeplab.py)进行更改得出，deeplabv3-resnest101，已测试
   - [ ] 目前的实验目标：提高车辙的识别率（道路的标注中，有一部分是车轮轧过的车辙），最怀疑是数据量不够
     - 思路1：加大数据量，如下进行的新的数据增强；
     - 思路2：调整损失函数，加入weight权重，减轻样本数目不平衡问题；
