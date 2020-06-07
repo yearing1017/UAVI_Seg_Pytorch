@@ -68,6 +68,7 @@
   - [x] CCNet与deeplabv3共同使用，将注意力模块加入deeplabv3
     - v0509版本：将ccnet模块与aspp模块并行，cat两个结果，最后进行分割。整体Acc、MIoU、Kappa都达到了最高
     - v0509版本：只有道路和车辆的准确率低于以往的实验
+    - v0607版本：测试Cross Entropy-Loss加入权重[0.1, 0.8, 1.0, 1.0]
   - [x] DAN网络单独训练
     - danet_drn_v0408版本：output包括feat_sum、pam_out、cam_out，采用辅助loss训练，结果一塌糊涂
     - danet_v0408版本：更换backbone网络为resnet-152，替换deeplabv3的aspp模块，不使用辅助loss，使用feat_sum进行结果的分割，结果详见下表Danet0408
