@@ -133,6 +133,12 @@
 - CCNet版本实验结果：原图、label、预测；三者对比如下：
 ![](https://blog-1258986886.cos.ap-beijing.myqcloud.com/yearing1017/ccnet0509.jpg)
 
+- CCNet-v3-0509版本实验预测图：
+![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/merged-ccnet-v0509.png)
+
+- CCNet-v3-0607版本（在0509版本加入样本权重且调整数据）实验预测图：
+![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/merged-ccnet-v0607.png)
+
 ## 7. 实验优化问题记录
 ### 7.1 实验优化问题解决记录-MIoU-v0217
 - MIoU数据：[MIoUData.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MIoU/MIoUData.py)：读取label和predict图像，以tensor形式，batch_size=4传入----v0210
