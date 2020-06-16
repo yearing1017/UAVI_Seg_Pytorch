@@ -55,6 +55,7 @@
   - CCNet0509：deeplabv3-ccnet-resnet152 + 5折交叉验证
   - ResNeSt0518：deeplabv3-resnest152 + 5折交叉验证（此代码修改自resnest分类网络代码）
   - ResNeSt0525：deeplabv3-resnest101 + 5折交叉验证（此代码修改自resnest用于分割的代码）
+  - CCNet0607: deeplabv3-ccnet-resnet152 + 5折交叉验证 + 
 
 ### 5.1 一些有关实验改进的新想法
   - [ ] Pytorch求出所以训练图像的mean和std值，加入实验
