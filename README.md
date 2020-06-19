@@ -1,16 +1,21 @@
 #  Deeplabv3_Pytorch
 - 基于矿区无人机影像的地物提取实验
+
 ## 1. 实验数据介绍
+
 - 一副无人机拍摄的高分辨率矿区影像图
 - 实验室进行标注的对应label
 - v0219版本：进行裁剪后的640 x 640的图像与label数据
 - v0225&v0301版本及之后：进行裁剪后的320 x 320的图像与label数据，并更换测试集
 
 ## 2. 实验环境介绍
+
 - GPU等服务器资源不加介绍
 - Python3.6、Pytorch、OpenCV、torchvision、numpy等必备环境
 - 图像切割工具包GDAL：仅在win系统下可运行
+
 ## 3. 实验流程介绍
+
 - 原图数据和标注好的label数据，label是灰度的图像，且每个像素属于该类（0-3）共四类
 - 切割原图和相应的label数据为640 x 640的图像，后期改为320大小进行实验
 - 将切割好的原图和label对应好，使用代码进行可视化（因为标注的label是灰度，直观上看是黑色一片）
@@ -21,7 +26,9 @@
 - 编写train.py训练代码，写好训练流程、保存模型、保存loss等信息
 - 训练完成之后，使用保存的模型进行预测,对预测出的图片进行涂色，使之可视化
 - 根据预测结果进行kappa系数、mIoU指标的计算
+
 ## 4. 实验部分代码简介
+
 - [数据简介](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/%E6%95%B0%E6%8D%AE%E7%AE%80%E4%BB%8B.md)：以一张大图和对应的label为例，可视化label以便查看原始数据
 - [数据切割](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/%E6%95%B0%E6%8D%AE%E5%88%87%E5%89%B2.md)：介绍有关tif文件的切割，以及转换tif格式为png格式
 - [灰度label可视化](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/%E7%81%B0%E5%BA%A6label%E5%8F%AF%E8%A7%86%E5%8C%96.md)：由于label是1通道的图像，直观上是黑色图像，写代码使得同类别像素一个颜色进行可视化
@@ -37,6 +44,7 @@
 - [Kappa系数计算](http://yearing1017.cn/2020/02/27/基于混淆矩阵的Kappa系数的计算/)：使用PyTorch基于混淆矩阵计算Kappa系数评价指标
 
 ## 5. 实验版本数据记录
+
 - 本实验有多个版本，具体实验详情如下：
   - 使用图像增强进行训练集的生成，640大小的图像：训练集1944张、验证集648张、测试集162张
   - v0225版本&v0301版本，320大小的图像：训练集9072张、验证集2268张、测试集378张
@@ -58,6 +66,7 @@
   - CCNet0607: deeplabv3-ccnet-resnet152 + 5折交叉验证 + 第三次调整数据 + 使用weight减轻样本不均衡
 
 ### 5.1 一些有关实验改进的新想法
+
   - [ ] Pytorch求出所以训练图像的mean和std值，加入实验
     - 存在疑问：见到的标准化都是采用的在线数据增强，离线增强数据该如何使用该tips
   - [ ] 数据增强加入随机裁剪操作，并双线性插值pad至320大小(不能pad，标签pad就不是真实值)，投入训练
@@ -87,23 +96,6 @@
       - 更新：删除了反转的图像中全黑的label，即全是背景的label；（减轻一下样本不均衡）
     - 有关第三次数据调整，详见[issue-数据调整汇总](https://github.com/yearing1017/Deeplabv3_Pytorch/issues/2)
 
-### 5.2 test测试数据集-v0219
-
-#### 5.2.1 SGD与Adam整体平均像素acc及miou对比-下为Adam
-
-|         acc        |        MIoU        |
-| :----------------: | :----------------: |
-| 0.9263767325704164 | 0.4807448577750288 |
-| 0.9337385405707201 | 0.47286513489126114|
-
-#### 5.2.2 类别平均像素acc-v0219
-
-| 类别 |        SGD         |        Adam        |
-| :--: | :----------------: | :----------------: |
-|  地面   | 0.9280041488314654 | 0.9393157770328366 |
-|  房屋   | 0.8031034186590591 | 0.8322606620969475 |
-|  道路   | 0.522966884580534  | 0.7378283121400184 |
-|  车辆   | 0.6060759535374916 | 0.7527768185633605 |
 
 ### 5.2 test测试数据集-各版本结果对比
 
@@ -123,6 +115,7 @@
 | CCNet0607 | 0.9603 | 0.8057 | 0.8684 | 0.9722 | 0.8907 | 0.9216 | 0.7745|
 
 ## 6. 实验分割结果展示
+
 - v0304版本实验结果：原图、label、预测；三者对比如下：
 ![](https://blog-1258986886.cos.ap-beijing.myqcloud.com/yearing1017/deeplabv3_0304.png)
 
@@ -139,20 +132,42 @@
 ![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/merged-ccnet-v0607.png)
 
 ## 7. 实验优化问题记录
+
 ### 7.1 实验优化问题解决记录-MIoU-v0217
+
 - MIoU数据：[MIoUData.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MIoU/MIoUData.py)：读取label和predict图像，以tensor形式，batch_size=4传入----v0210
 - MIoU的计算：[testMIoU.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MIoU/testMIoU.py)：将传入的tensor转为np的array，再执行flatten()进行一维化，每4个图像进行计算miou，最后求平均的miou
 - 问题：计算得到的MIoU都为1.0，怀疑原因，中间的float强转int，最后得到的数值都为1
 - 解决v0217：修改读入方式，使用CV2直接读入，不变为tensor，详见[MIoUCalv0217.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MIoU/MIoUCalv0217.py)，[MIoUDatav0217.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MIoU/MIoUDatav0217.py)
+
 ### 7.2 实验待优化问题-预处理
+
 - MyData_v0211版本，cv2以BGR模式读入训练集，先改为RGB图像，再进行nomalize初始化，使用的mean和std数值都为Imagenet数据集预训练得到的，但是训练完成之后，预测结果有偏差，如下：
 ![v0211predict](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/1-2.jpg)
 
 ### 7.3 预测问题-已解决v0217
+
 - v0217版本：修改预测方法，以一张一张读入进行预测，解决之前的大部分涂色失败问题。效果如下：
 ![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/DUIBI.jpg)
 
 ### 7.4 SGD与Adam优化器预测效果对比
+
+#### 7.4.1 SGD与Adam整体平均像素acc及miou对比-下为Adam
+
+|         acc        |        MIoU        |
+| :----------------: | :----------------: |
+| 0.9263767325704164 | 0.4807448577750288 |
+| 0.9337385405707201 | 0.47286513489126114|
+
+#### 7.4.2 类别平均像素acc-v0219
+
+| 类别 |        SGD         |        Adam        |
+| :--: | :----------------: | :----------------: |
+|  地面   | 0.9280041488314654 | 0.9393157770328366 |
+|  房屋   | 0.8031034186590591 | 0.8322606620969475 |
+|  道路   | 0.522966884580534  | 0.7378283121400184 |
+|  车辆   | 0.6060759535374916 | 0.7527768185633605 |
+
 - v0219：仅仅改动优化器为Adam，lr=1e-3
 ![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/adam-1.jpg)
 
