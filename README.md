@@ -60,8 +60,8 @@
   - V3p-152： deeplabv3+-resnet152 + 5折交叉验证
   - DANet_res：danet-resnet152 + 5折交叉验证
   - Deeplabv3_dan：deeplabv3-dan-resnet152 + 5折交叉验证
-  - CCNet0403：ccnet-resnet152 + 5折交叉验证
-  - CCNet0509：deeplabv3-ccnet-resnet152 + 5折交叉验证
+  - [CCNet0403](https://github.com/yearing1017/CCNet_PyTorch)：ccnet-resnet152 + 5折交叉验证
+  - [CCNet0509](https://github.com/yearing1017/CCNet_PyTorch)：deeplabv3-ccnet-resnet152 + 5折交叉验证
   - ResNeSt0518：deeplabv3-resnest152 + 5折交叉验证（此代码修改自resnest分类网络代码）
   - ResNeSt0525：deeplabv3-resnest101 + 5折交叉验证（此代码修改自resnest用于分割的代码）
   - CCNet0607: deeplabv3-ccnet-resnet152 + 5折交叉验证 + 第三次调整数据 + 使用weight减轻样本不均衡
