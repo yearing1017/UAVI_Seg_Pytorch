@@ -7,6 +7,7 @@
 - 实验室进行标注的对应label
 - v0219版本：进行裁剪后的640 x 640的图像与label数据
 - v0225&v0301版本及之后：进行裁剪后的320 x 320的图像与label数据，并更换测试集
+- v0607及所有详细数据调整情况：[实验数据版本调整](https://github.com/yearing1017/Deeplabv3_Pytorch/issues/2)
 
 ## 2. 实验环境介绍
 
