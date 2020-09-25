@@ -1,7 +1,7 @@
-#  Deeplabv3_Pytorch
+##  UAVI_Seg_Pytorch
 - 基于语义分割的矿区无人机影像地物提取实验
 
-## 1. 实验数据介绍
+### 1. 实验数据介绍
 
 - 无人机拍摄的高分辨率矿区影像图
 - 实验室进行标注的对应label
@@ -9,13 +9,13 @@
 - v0225&v0301版本及之后：进行裁剪后的320 x 320的图像与label数据，并更换测试集
 - v0607及所有详细数据调整情况：[实验数据版本调整](https://github.com/yearing1017/Deeplabv3_Pytorch/issues/2)
 
-## 2. 实验环境介绍
+### 2. 实验环境介绍
 
 - GPU等服务器资源不加介绍
 - Python3.6、Pytorch、OpenCV、torchvision、numpy等必备环境
 - 图像切割工具包GDAL：仅在win系统下可运行
 
-## 3. 实验流程介绍
+### 3. 实验流程介绍
 
 - 原图数据和标注好的label数据，label是灰度的图像，且每个像素属于该类（0-3）共四类
 - 切割原图和相应的label数据为640 x 640的图像，后期改为320大小进行实验
@@ -28,7 +28,7 @@
 - 训练完成之后，使用保存的模型进行预测,对预测出的图片进行涂色，使之可视化
 - 根据预测结果进行kappa系数、mIoU指标的计算
 
-## 4. 实验部分代码简介
+### 4. 实验部分代码简介
 
 - [数据简介](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/%E6%95%B0%E6%8D%AE%E7%AE%80%E4%BB%8B.md)：以一张大图和对应的label为例，可视化label以便查看原始数据
 - [数据切割](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/%E6%95%B0%E6%8D%AE%E5%88%87%E5%89%B2.md)：介绍有关tif文件的切割，以及转换tif格式为png格式
@@ -44,7 +44,7 @@
 - [MIoU指标计算](http://yearing1017.cn/2020/02/17/MIoU-PyTorch/)：使用PyTorch基于混淆矩阵计算MIoU、Acc、类别Acc等指标
 - [Kappa系数计算](http://yearing1017.cn/2020/02/27/基于混淆矩阵的Kappa系数的计算/)：使用PyTorch基于混淆矩阵计算Kappa系数评价指标
 
-## 5. 实验版本数据记录
+### 5. 实验版本数据记录
 
 - 本实验有多个版本，具体实验详情如下：
   - 使用图像增强进行训练集的生成，640大小的图像：训练集1944张、验证集648张、测试集162张
@@ -66,7 +66,7 @@
   - ResNeSt0525：deeplabv3-resnest101 + 5折交叉验证（此代码修改自resnest用于分割的代码）
   - CCNet0607: deeplabv3-ccnet-resnet152 + 5折交叉验证 + 第三次调整数据 + 使用weight减轻样本不均衡
 
-### 5.1 实验版本记录 & 一些想法
+#### 5.1 实验版本记录 & 一些想法
 
   - [ ] Pytorch求出所以训练图像的mean和std值，加入实验
     - 存在疑问：见到的标准化都是采用的在线数据增强，离线增强数据该如何使用该tips
@@ -99,7 +99,7 @@
       - 更新：删除了反转的图像中全黑的label，即全是背景的label；（减轻一下样本不均衡）
     - 有关第三次数据调整，详见[issue-数据调整汇总](https://github.com/yearing1017/Deeplabv3_Pytorch/issues/2)
 
-### 5.2 [RGB-D数据语义分割实验](https://github.com/yearing1017/Deeplabv3_Pytorch/tree/master/RGBD%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2)
+#### 5.2 [RGB-D数据语义分割实验](https://github.com/yearing1017/Deeplabv3_Pytorch/tree/master/RGBD%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2)
 
 - **数据处理部分**
   - Depth原始数据（高程数据）是32位的tiff格式图像，需转换为8位的tiff格式图，**使用python的代码直接转换会线性压缩图像的对比性，所以要先找到图像像素的极值，将其像素之间的差做出来，再使用代码转换为uint8文件**。转换代码地址：[32to8.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/utils/32to8.py)
@@ -109,7 +109,7 @@
   
 - **代码详见上方链接**
 
-### 5.3 test测试数据集-各版本结果对比
+#### 5.3 test测试数据集-各版本结果对比
 
 |     版本&指标    |  Acc   |  MIoU  | Kappa  |  背景  |  房屋  |  道路  |  车辆  |
 | :-----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -127,7 +127,7 @@
 | CCNet0607 | 0.9603 | 0.8057 | 0.8684 | 0.9722 | 0.8907 | 0.9216 | 0.7745 |
 | ACNet0923 | 0.9635 | 0.8220 | 0.8802 | 0.9710 | 0.9191 | 0.9588 | 0.8167 |
 
-## 6. 实验分割结果展示
+### 6. 实验分割结果展示
 
 - v0304版本实验结果：原图、label、预测；三者对比如下：
 ![](https://blog-1258986886.cos.ap-beijing.myqcloud.com/yearing1017/deeplabv3_0304.png)
@@ -144,35 +144,35 @@
 - CCNet-v3-0607版本（在0509版本加入样本权重且调整数据）实验预测图：
 ![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/merged-ccnet-v0607.png)
 
-## 7. 实验优化问题记录
+### 7. 实验优化问题记录
 
-### 7.1 实验优化问题解决记录-MIoU-v0217
+#### 7.1 实验优化问题解决记录-MIoU-v0217
 
 - MIoU数据：[MIoUData.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MIoU/MIoUData.py)：读取label和predict图像，以tensor形式，batch_size=4传入----v0210
 - MIoU的计算：[testMIoU.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MIoU/testMIoU.py)：将传入的tensor转为np的array，再执行flatten()进行一维化，每4个图像进行计算miou，最后求平均的miou
 - 问题：计算得到的MIoU都为1.0，怀疑原因，中间的float强转int，最后得到的数值都为1
 - 解决v0217：修改读入方式，使用CV2直接读入，不变为tensor，详见[MIoUCalv0217.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MIoU/MIoUCalv0217.py)，[MIoUDatav0217.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MIoU/MIoUDatav0217.py)
 
-### 7.2 实验待优化问题-预处理
+#### 7.2 实验待优化问题-预处理
 
 - MyData_v0211版本，cv2以BGR模式读入训练集，先改为RGB图像，再进行nomalize初始化，使用的mean和std数值都为Imagenet数据集预训练得到的，但是训练完成之后，预测结果有偏差，如下：
 ![v0211predict](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/1-2.jpg)
 
-### 7.3 预测问题-已解决v0217
+#### 7.3 预测问题-已解决v0217
 
 - v0217版本：修改预测方法，以一张一张读入进行预测，解决之前的大部分涂色失败问题。效果如下：
 ![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/DUIBI.jpg)
 
-### 7.4 SGD与Adam优化器预测效果对比
+#### 7.4 SGD与Adam优化器预测效果对比
 
-#### 7.4.1 SGD与Adam整体平均像素acc及miou对比-下为Adam
+- **SGD与Adam整体平均像素acc及miou对比**
 
-|         acc        |        MIoU        |
-| :----------------: | :----------------: |
-| 0.9263767325704164 | 0.4807448577750288 |
-| 0.9337385405707201 | 0.47286513489126114|
+| 方法 |         acc        |        MIoU        |
+| :--: | :----------------: | :----------------: |
+| SGD | 0.9263767325704164 | 0.4807448577750288 |
+| Adam | 0.9337385405707201 | 0.47286513489126114|
 
-#### 7.4.2 类别平均像素acc-v0219
+- **类别平均像素acc-v0219**
 
 | 类别 |        SGD         |        Adam        |
 | :--: | :----------------: | :----------------: |
@@ -181,7 +181,8 @@
 |  道路   | 0.522966884580534  | 0.7378283121400184 |
 |  车辆   | 0.6060759535374916 | 0.7527768185633605 |
 
-- v0219：仅仅改动优化器为Adam，lr=1e-3
+- **v0219：仅仅改动优化器为Adam，lr=1e-3**
+
 ![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/adam-1.jpg)
 
 ![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/adam-2.jpg)
