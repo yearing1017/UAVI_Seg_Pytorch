@@ -66,7 +66,7 @@
   - ResNeSt0525：deeplabv3-resnest101 + 5折交叉验证（此代码修改自resnest用于分割的代码）
   - CCNet0607: deeplabv3-ccnet-resnet152 + 5折交叉验证 + 第三次调整数据 + 使用weight减轻样本不均衡
 
-### 5.1 一些有关实验改进的新想法
+### 5.1 实验版本记录 & 一些想法
 
   - [ ] Pytorch求出所以训练图像的mean和std值，加入实验
     - 存在疑问：见到的标准化都是采用的在线数据增强，离线增强数据该如何使用该tips
@@ -99,13 +99,15 @@
       - 更新：删除了反转的图像中全黑的label，即全是背景的label；（减轻一下样本不均衡）
     - 有关第三次数据调整，详见[issue-数据调整汇总](https://github.com/yearing1017/Deeplabv3_Pytorch/issues/2)
 
-### 5.2 RGB-D数据语义分割实验
+### 5.2 [RGB-D数据语义分割实验](https://github.com/yearing1017/Deeplabv3_Pytorch/tree/master/RGBD%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2)
 
 - **数据处理部分**
   - Depth原始数据（高程数据）是32位的tiff格式图像，需转换为8位的tiff格式图，**使用python的代码直接转换会线性压缩图像的对比性，所以要先找到图像像素的极值，将其像素之间的差做出来，再使用代码转换为uint8文件**。转换代码地址：[32to8.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/utils/32to8.py)
   - png切割代码：[png_crop.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/utils/png_crop.py)
   - 在dataset3中有筛选出的特征较均衡的图像，使用代码筛选切割好的dsm高程数据；代码：[file_find.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/utils/file_find.py)
   - 基于dataset3加入dsm高程数据：[dataset4的调整记录](https://github.com/yearing1017/Deeplabv3_Pytorch/issues/2#issuecomment-696058635)
+  
+- **代码详见上方链接**
 
 ### 5.3 test测试数据集-各版本结果对比
 
