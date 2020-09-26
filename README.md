@@ -144,6 +144,9 @@
 - CCNet-v3-0607版本（在0509版本加入样本权重且调整数据）实验预测图：
 ![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/merged-ccnet-v0607.png)
 
+- ACNet-0923版本实验预测图：
+![](https://github.com/yearing1017/UAVI_Seg_Pytorch/blob/master/image/acnet_0923_db.jpg)
+
 ### 7. 实验优化问题记录
 
 #### 7.1 实验优化问题解决记录-MIoU-v0217
