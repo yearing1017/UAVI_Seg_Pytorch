@@ -27,3 +27,22 @@
 | CCNet0607 | 0.9603 | 0.8057 | 0.8684 | 0.9722 | 0.8907 | 0.9216 | 0.7745 |
 | ACNet0923 | 0.9635 | 0.8220 | 0.8802 | 0.9710 | 0.9191 | 0.9588 | 0.8167 |
 | ACNet0925 | 0.9583 | 0.8016 | 0.8625 | 0.9716 | 0.9060 | 0.9002 | 0.7994 |
+
+### 2. [ACNet_v0927版本](https://github.com/yearing1017/Deeplabv3_Pytorch/tree/master/RGBD%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/ACNet_v0927)
+
+#### 2.1 实验简介
+- 网络：ACNet的decode阶段普通的卷积层换为CC_Module；
+- baseline：resnet50的layer1-4；
+- 训练与验证：5折交叉验证；
+- 训练轮次数：epoch = 45；
+- 模型的评价标准：MIoU；
+
+
+### 2. [ACNet_v0928版本](https://github.com/yearing1017/Deeplabv3_Pytorch/tree/master/RGBD%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/ACNet_v0928)
+
+#### 2.1 实验简介
+- 网络：ACNet的通道注意力换为CC_Module；
+- baseline：resnet50的layer1-4；
+- 训练与验证：5折交叉验证；
+- 训练轮次数：epoch = 45；
+- 模型的评价标准：MIoU；
