@@ -152,7 +152,7 @@ class ACNet(nn.Module):
         m = self.layer1_m(m)
 
         ca_rgb_1 = self.c_atten_rgb_1(rgb).mul(rgb)
-        ca_depth_1 = self.s_atten_depth_1(depth).mul(depth)
+        ca_depth_1 = self.c_atten_depth_1(depth).mul(depth)
         sa_rgb_1 = self.s_atten_rgb_1(ca_rgb_1).mul(ca_rgb_1)
         sa_depth_1 = self.s_atten_depth_1(ca_depth_1).mul(ca_depth_1)
         m1 = m + sa_rgb_1 + sa_depth_1
@@ -163,7 +163,7 @@ class ACNet(nn.Module):
         m = self.layer2_m(m1)
 
         ca_rgb_2 = self.c_atten_rgb_2(rgb).mul(rgb)
-        ca_depth_2 = self.s_atten_depth_2(depth).mul(depth)
+        ca_depth_2 = self.c_atten_depth_2(depth).mul(depth)
         sa_rgb_2 = self.s_atten_rgb_2(ca_rgb_2).mul(ca_rgb_2)
         sa_depth_2 = self.s_atten_depth_2(ca_depth_2).mul(ca_depth_2)
         m2 = m + sa_rgb_2 + sa_depth_2
@@ -174,7 +174,7 @@ class ACNet(nn.Module):
         m = self.layer3_m(m2)
 
         ca_rgb_3 = self.c_atten_rgb_3(rgb).mul(rgb)
-        ca_depth_3 = self.s_atten_depth_3(depth).mul(depth)
+        ca_depth_3 = self.c_atten_depth_3(depth).mul(depth)
         sa_rgb_3 = self.s_atten_rgb_3(ca_rgb_3).mul(ca_rgb_3)
         sa_depth_3 = self.s_atten_depth_3(ca_depth_3).mul(ca_depth_3)
         m3 = m + sa_rgb_3 + sa_depth_3
@@ -185,7 +185,7 @@ class ACNet(nn.Module):
         m = self.layer4_m(m3)
 
         ca_rgb_4 = self.c_atten_rgb_4(rgb).mul(rgb)
-        ca_depth_4 = self.s_atten_depth_4(depth).mul(depth)
+        ca_depth_4 = self.c_atten_depth_4(depth).mul(depth)
         sa_rgb_4 = self.s_atten_rgb_4(ca_rgb_4).mul(ca_rgb_4)
         sa_depth_4 = self.s_atten_depth_4(ca_depth_4).mul(ca_depth_4)
         m4 = m + sa_rgb_4 + sa_depth_4
@@ -282,28 +282,6 @@ class ACNet(nn.Module):
         return nn.Sequential(*layers)
 
 
-    def _load_resnet_pretrained(self):
-        pretrain_dict = model_zoo.load_url(utils.model_urls['resnet50'])
-        model_dict = {}
-        state_dict = self.state_dict()
-        for k, v in pretrain_dict.items():
-            # print('%%%%% ', k)
-            if k in state_dict:
-                if k.startswith('conv1'):
-                    model_dict[k] = v
-                    # print('##### ', k)
-                    model_dict[k.replace('conv1', 'conv1_d')] = torch.mean(v, 1).data. \
-                        view_as(state_dict[k.replace('conv1', 'conv1_d')])
-
-                elif k.startswith('bn1'):
-                    model_dict[k] = v
-                    model_dict[k.replace('bn1', 'bn1_d')] = v
-                elif k.startswith('layer'):
-                    model_dict[k] = v
-                    model_dict[k[:6]+'_d'+k[6:]] = v
-                    model_dict[k[:6]+'_m'+k[6:]] = v
-        state_dict.update(model_dict)
-        self.load_state_dict(state_dict)
 
 
 class Bottleneck(nn.Module):
@@ -371,6 +349,7 @@ class SpatialAttention(nn.Module):
         self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
+        # mean 方法会降维到1
         avgout = torch.mean(x, dim=1, keepdim=True)
         maxout, _ = torch.max(x, dim=1, keepdim=True)
         x = torch.cat([avgout, maxout], dim=1)
