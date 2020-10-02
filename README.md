@@ -65,9 +65,11 @@
   - ResNeSt0518：deeplabv3-resnest152 + 5折交叉验证（此代码修改自resnest分类网络代码）
   - ResNeSt0525：deeplabv3-resnest101 + 5折交叉验证（此代码修改自resnest用于分割的代码）
   - CCNet0607: deeplabv3-ccnet-resnet152 + 5折交叉验证 + 第三次调整数据 + 使用weight减轻样本不均衡
-  - ACNet0923: ACNet-resnet50 + 5折交叉验证 + 加入dsm高程信息 + 使用weight减轻样本不均衡
-  - ACNet0925: ACNet-resnet101 + 5折交叉验证 + 加入dsm高程信息 + 使用weight减轻样本不均衡
-  - ACNet0927: ACNet-resnet50 + CCNet替换decode的agant层 + + 5折交叉验证 + 加入dsm高程信息 + 使用weight减轻样本不均衡
+  - ACNet0923: ACNet-resnet50 + 5折交叉验证 + 加入dsm高程信息 + 使用weight减轻样本不均衡 + epoch=40
+  - ACNet0925: ACNet-resnet101 + 5折交叉验证 + 加入dsm高程信息 + 使用weight减轻样本不均衡 + epoch=40
+  - ACNet0927: ACNet-resnet50 + CCNet替换decode的agant层 + 5折交叉验证 + 加入dsm高程信息 + 使用weight减轻样本不均衡 + epoch=45
+  - ACNet0928: ACNet-resnet50 + CCNet替换原通道注意力模块 + 5折交叉验证 + 加入dsm高程信息 + 使用weight减轻样本不均衡 + epoch=45
+  - ACNet0930: ACNet-resnet50 + CBAM模块替换原通道注意力模块 + 5折交叉验证 + 加入dsm高程信息 + 使用weight减轻样本不均衡 + epoch=45
   
 #### 5.1 实验版本记录 & 一些想法
 
