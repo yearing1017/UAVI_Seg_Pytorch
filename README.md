@@ -49,6 +49,8 @@
 - 本实验有多个版本，具体实验详情如下：
   - 使用图像增强进行训练集的生成，640大小的图像：训练集1944张、验证集648张、测试集162张
   - v0225版本&v0301版本，320大小的图像：训练集9072张、验证集2268张、测试集378张
+  - v0607版本之后：第三次调整数据;使用dataset3
+  - v0923版本之后：加入dsm高程数据；使用dataset4
   - 图像的预处理：无标准化、只进行了归一化
   - 损失函数：CrossEntropyLoss
   - 优化器：SGD、lr=1e-3、动量=0.9；  v0219版本测试Adam优化器、lr=1e-3
@@ -65,11 +67,11 @@
   - ResNeSt0518：deeplabv3-resnest152 + 5折交叉验证（此代码修改自resnest分类网络代码）
   - ResNeSt0525：deeplabv3-resnest101 + 5折交叉验证（此代码修改自resnest用于分割的代码）
   - CCNet0607: deeplabv3-ccnet-resnet152 + 5折交叉验证 + 第三次调整数据 + 使用weight减轻样本不均衡
-  - ACNet0923: ACNet-resnet50 + 5折交叉验证 + 加入dsm高程信息 + 使用weight减轻样本不均衡 + epoch=40
-  - ACNet0925: ACNet-resnet101 + 5折交叉验证 + 加入dsm高程信息 + 使用weight减轻样本不均衡 + epoch=40
-  - ACNet0927: ACNet-resnet50 + CCNet替换decode的agant层 + 5折交叉验证 + 加入dsm高程信息 + 使用weight减轻样本不均衡 + epoch=45
-  - ACNet0928: ACNet-resnet50 + CCNet替换原通道注意力模块 + 5折交叉验证 + 加入dsm高程信息 + 使用weight减轻样本不均衡 + epoch=45
-  - ACNet0930: ACNet-resnet50 + CBAM模块替换原通道注意力模块 + 5折交叉验证 + 加入dsm高程信息 + 使用weight减轻样本不均衡 + epoch=45
+  - ACNet0923: ACNet-resnet50 + 5折交叉验证 + 加入dsm高程信息 + 使用weight减轻样本不均衡 + 40
+  - ACNet0925: ACNet-resnet101 + 5折交叉验证 + 加入dsm高程信息 + 使用weight减轻样本不均衡 + 40
+  - ACNet0927: ACNet-resnet50 + CCNet替换decode的agant层 + 5折交叉验证 + 加入dsm高程信息 + 使用weight减轻样本不均衡 + 45
+  - ACNet0928: ACNet-resnet50 + CCNet替换原通道注意力模块 + 5折交叉验证 + 加入dsm高程信息 + 使用weight减轻样本不均衡 + 45
+  - ACNet0930: ACNet-resnet50 + CBAM模块替换原通道注意力模块 + 5折交叉验证 + 加入dsm高程信息 + 使用weight减轻样本不均衡 + 45
   
 #### 5.1 实验版本记录 & 一些想法
 
