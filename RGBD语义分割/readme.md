@@ -59,7 +59,7 @@
 | :-----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
 | ACNet0928_epo44 | 0.9352 | 0.7172 | 0.7878 | 0.9491 | 0.8509 | 0.9534 | 0.6594 |
 
-### 4. [ACNet_v0930版本](https://github.com/yearing1017/Deeplabv3_Pytorch/tree/master/RGBD%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/ACNet_v0930)
+### 4. [ACNet_v0930版本](https://github.com/yearing1017/Deeplabv3_Pytorch/tree/master/RGBD%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/ACNet_CBAM)
 
 #### 3.1 实验简介
 - 网络：ACNet的通道注意力换为CBAM模块；
