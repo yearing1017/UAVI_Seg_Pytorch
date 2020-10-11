@@ -101,28 +101,25 @@ def makeDir(path):
         return -2
 
 
-def imageOps(func_name, image, label, img_des_path, label_des_path, img_file_name, label_file_name, times=1):
-    funcMap = {"randomRotation": DataAugmentation.randomRotation,
-               "randomColor": DataAugmentation.randomColor,
-               "FR_flip":DataAugmentation.FR_flip,
-               "TB_flip":DataAugmentation.TB_flip
-               }
+def imageOps(func_name, image, label, dsm_data, img_des_path, label_des_path, dsm_data_des_path, img_file_name, label_file_name, dsm_data_file_name, 
+    times=1):
+    funcMap = {"randomRotation": DataAugmentation.randomRotation}
     if funcMap.get(func_name) is None:
         logger.error("%s is not exist", func_name)
         return -1
 
     for _i in range(0, times, 1):
-        new_image, new_label = funcMap[func_name](image, label)
+        new_image, new_label, new_dsm = funcMap[func_name](image, label, dsm_data)
         DataAugmentation.saveImage(new_image, os.path.join(img_des_path, func_name + str(_i) + img_file_name))
         DataAugmentation.saveImage(new_label, os.path.join(label_des_path, func_name + str(_i) + label_file_name))
-
+        DataAugmentation.saveImage(new_dsm, os.path.join(dsm_data_des_path, func_name + str(_i) + dsm_data_file_name))
 
 #opsList = {"randomRotation","randomColor", "randomGaussian"}
-#opsList = {"randomRotation"}
-opsList = {"FR_flip","TB_flip"}
+opsList = {"randomRotation"}
+#opsList = {"FR_flip","TB_flip"}
 
 
-def threadOPS(img_path, new_img_path, label_path, new_label_path):
+def threadOPS(img_path, new_img_path, label_path, new_label_path, dsm_data_path, new_dsm_data_path):
     """
     多线程处理事务
     :param src_path: 资源文件
@@ -141,8 +138,14 @@ def threadOPS(img_path, new_img_path, label_path, new_label_path):
     else:
         label_names = [label_path]
 
+    if os.path.isdir(dsm_data_path):
+        dsm_data_names = os.listdir(dsm_data_path)
+    else:
+        dsm_data_names = [dsm_data_path]
+
     img_num = 0
     label_num = 0
+    dsm_data_num = 0
 
     # img num
     for img_name in img_names:
@@ -161,39 +164,55 @@ def threadOPS(img_path, new_img_path, label_path, new_label_path):
         else:
             label_num = label_num + 1
 
-    if img_num != label_num:
-        print('the num of img and label is not equl')
+    for dsm_data_name in dsm_data_names:
+        tmp_dsm_data_name = os.path.join(dsm_data_path, dsm_data_name)
+        if os.path.isdir(tmp_dsm_data_name):
+            print('contain file folder')
+            exit()
+        else:
+            dsm_data_num = dsm_data_num + 1
+
+    if img_num != label_num != dsm_data_num:
+        print('the num of img and label and dsm_data is not equl')
         exit()
     else:
         num = img_num
 
     for i in range(num):
         img_name = img_names[i]
-        print(img_name)
+        print('img:'+ img_name)
         label_name = label_names[i]
-        print(label_name)
+        print('label:' + label_name)
+        dsm_data_name = dsm_data_names[i]
+        print('dsm:' + dsm_data_name)
 
         tmp_img_name = os.path.join(img_path, img_name)
         tmp_label_name = os.path.join(label_path, label_name)
+        tmp_dsm_data_name = os.path.join(dsm_data_path, dsm_data_name)
 
         # 读取文件并进行操作
         image = DataAugmentation.openImage(tmp_img_name)
         image.load()
         label = DataAugmentation.openImage(tmp_label_name)
         image.load()
+        dsm_data = DataAugmentation.openImage(tmp_dsm_data_name)
+        image.load()
         threadImage = [0] * 5
         _index = 0
         for ops_name in opsList:
             threadImage[_index] = threading.Thread(target=imageOps,
-                                                   args=(ops_name, image, label, new_img_path, new_label_path, img_name,
-                                                         label_name))
+                                                   args=(ops_name, image, label, dsm_data, new_img_path, new_label_path, new_dsm_data_path, img_name,
+                                                         label_name, dsm_data_name))
             threadImage[_index].start()
             _index += 1
             time.sleep(0.2)
 
 
 if __name__ == '__main__':
-    threadOPS("data/dataset3/train_images_noaug_3/",
-              "data/dataset3/flip_images/",
-              "data/dataset3/train_anno_noaug_3/",
-              "data/dataset3/flip_anno/")
+    threadOPS("data/dataset4/road_car_images_292/",
+              "data/dataset4/road_car_images_292_aug/",
+              "data/dataset4/road_car_anno_292/",
+              "data/dataset4/road_car_anno_292_aug/",
+              "data/dataset4/dsm_292",
+              "data/dataset4/road_car_dsm_292_aug"
+              )
