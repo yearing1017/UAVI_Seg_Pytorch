@@ -81,6 +81,7 @@
   - ACNet1009: ACNet1004对照实验 + m0-m4融合的特征加入到RGB分支
   - ACNet1010: ACNet1004对照实验 + sk-resnet50网络替换se-resnet50
   - ACNet1012: ACNet0923网络结构 + 新的dataset5数据集
+  - ACNet1014: ACNet1004网络结构 + 新的dataset5数据集
   
 #### 5.1 实验版本记录 & 一些想法
 
