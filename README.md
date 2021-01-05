@@ -23,7 +23,7 @@
 - 对数据进行数据增强，切割完成才有对应的几百张数据，增强至几千张
 - 增强后的数据也要一对一对应好，建议一开始就取两者相同的图像名，使用可视化进行测试
 - 数据划分，分为训练集、验证集、测试集；按照6:2:2的比例
-- 搭建网络代码，使用Pytorch搭建deeplabv3网络（基于ResNet），后期加入多种trick进行测试
+- 搭建网络代码，使用Pytorch搭建网络，后期加入多种trick进行测试
 - 编写train.py训练代码，写好训练流程、保存模型、保存loss等信息
 - 训练完成之后，使用保存的模型进行预测,对预测出的图片进行涂色，使之可视化
 - 根据预测结果进行kappa系数、mIoU指标的计算
@@ -95,11 +95,9 @@
   
 #### 5.1 实验版本记录 & 一些想法
 
-  - [ ] Pytorch求出所以训练图像的mean和std值，加入实验
-    - 存在疑问：见到的标准化都是采用的在线数据增强，离线增强数据该如何使用该tips
   - [ ] 数据增强加入随机裁剪操作，并双线性插值pad至320大小(不能pad，标签pad就不是真实值)，投入训练
     - 随机裁剪数据至192大小，没有pad，和320大小的数据一起当做训练集，出现错误提示：**一个batch的数据，[B,C,H,W]必须一致，由于320和192大小的数据掺杂，所以报错。因为实验使用离线的数据增强**
-  - [ ] 因数据集中，地面样本占比最大，而道路占比较少，想测试使用Focal-Loss替换Cross Entropy-Loss
+  - [x] 因数据集中样本数量不平衡，测试weighted Cross Entropy-Loss以及Focal-Loss
   - [x] 使用CCNet单独训练
     - v0403版本：只使用了ccnet注意力模块的输出上采样，结果为不收敛，但是使用epoch-8.pth测试有点效果
     - 后期测试：将x与x_dsn特征融合，进行测试，测试结果如下，可以看出较danet单独训练结果稍好，车辆acc例外
@@ -181,21 +179,6 @@
 
 ### 6. 实验分割结果展示
 
-- v0304版本实验结果：原图、label、预测；三者对比如下：
-![](https://blog-1258986886.cos.ap-beijing.myqcloud.com/yearing1017/deeplabv3_0304.png)
-
-- Danet0420版本实验结果：原图、label、预测；三者对比如下：
-![](https://blog-1258986886.cos.ap-beijing.myqcloud.com/yearing1017/danet_v3.jpg)
-
-- CCNet版本实验结果：原图、label、预测；三者对比如下：
-![](https://blog-1258986886.cos.ap-beijing.myqcloud.com/yearing1017/ccnet0509.jpg)
-
-- CCNet-v3-0509版本实验预测图：
-![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/merged-ccnet-v0509.png)
-
-- CCNet-v3-0607版本（在0509版本加入样本权重且调整数据）实验预测图：
-![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/merged-ccnet-v0607.png)
-
 - ACNet-0923版本实验预测图：
 ![](https://github.com/yearing1017/UAVI_Seg_Pytorch/blob/master/image/acnet_0923_db.jpg)
 
@@ -208,36 +191,7 @@
 - 问题：计算得到的MIoU都为1.0，怀疑原因，中间的float强转int，最后得到的数值都为1
 - 解决v0217：修改读入方式，使用CV2直接读入，不变为tensor，详见[MIoUCalv0217.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MIoU/MIoUCalv0217.py)，[MIoUDatav0217.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MIoU/MIoUDatav0217.py)
 
-#### 7.2 实验待优化问题-预处理
-
-- MyData_v0211版本，cv2以BGR模式读入训练集，先改为RGB图像，再进行nomalize初始化，使用的mean和std数值都为Imagenet数据集预训练得到的，但是训练完成之后，预测结果有偏差，如下：
-![v0211predict](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/1-2.jpg)
-
 #### 7.3 预测问题-已解决v0217
 
 - v0217版本：修改预测方法，以一张一张读入进行预测，解决之前的大部分涂色失败问题。效果如下：
 ![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/DUIBI.jpg)
-
-#### 7.4 SGD与Adam优化器预测效果对比
-
-- **SGD与Adam整体平均像素acc及miou对比**
-
-| 方法 |         acc        |        MIoU        |
-| :--: | :----------------: | :----------------: |
-| SGD | 0.9263767325704164 | 0.4807448577750288 |
-| Adam | 0.9337385405707201 | 0.47286513489126114|
-
-- **类别平均像素acc-v0219**
-
-| 类别 |        SGD         |        Adam        |
-| :--: | :----------------: | :----------------: |
-|  地面   | 0.9280041488314654 | 0.9393157770328366 |
-|  房屋   | 0.8031034186590591 | 0.8322606620969475 |
-|  道路   | 0.522966884580534  | 0.7378283121400184 |
-|  车辆   | 0.6060759535374916 | 0.7527768185633605 |
-
-- **v0219：仅仅改动优化器为Adam，lr=1e-3**
-
-![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/adam-1.jpg)
-
-![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/adam-2.jpg)
