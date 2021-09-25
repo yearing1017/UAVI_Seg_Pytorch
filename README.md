@@ -1,6 +1,10 @@
 ##  UAVI_Seg_Pytorch
 - 基于语义分割的矿区无人机影像地物提取实验
 
+### [AMFNet: an attention-based multi-level feature fusion network for ground objects extraction from mining area’s UAV-based RGB images and digital surface model](http://dx.doi.org/10.1117/1.JRS.15.036506)
+
+![](https://github.com/yearing1017/UAVI_Seg_Pytorch/blob/master/image/AMFNet.png)
+
 ### 1. 实验数据介绍
 
 - 无人机拍摄的高分辨率矿区影像图
@@ -194,4 +198,4 @@
 #### 7.3 预测问题-已解决v0217
 
 - v0217版本：修改预测方法，以一张一张读入进行预测，解决之前的大部分涂色失败问题。效果如下：
-![](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/image/DUIBI.jpg)
+![](https://github.com/yearing1017/UAVI_Seg_Pytorch/blob/master/image/DUIBI.jpg)
