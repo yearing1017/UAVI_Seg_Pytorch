@@ -1,5 +1,4 @@
 ##  UAVI_Seg_Pytorch
-- 基于语义分割的矿区无人机影像地物提取实验
 
 ### [AMFNet: an attention-based multi-level feature fusion network for ground objects extraction from mining area’s UAV-based RGB images and digital surface model](http://dx.doi.org/10.1117/1.JRS.15.036506)
 
@@ -194,8 +193,3 @@
 - MIoU的计算：[testMIoU.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MIoU/testMIoU.py)：将传入的tensor转为np的array，再执行flatten()进行一维化，每4个图像进行计算miou，最后求平均的miou
 - 问题：计算得到的MIoU都为1.0，怀疑原因，中间的float强转int，最后得到的数值都为1
 - 解决v0217：修改读入方式，使用CV2直接读入，不变为tensor，详见[MIoUCalv0217.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MIoU/MIoUCalv0217.py)，[MIoUDatav0217.py](https://github.com/yearing1017/Deeplabv3_Pytorch/blob/master/MIoU/MIoUDatav0217.py)
-
-#### 7.3 预测问题-已解决v0217
-
-- v0217版本：修改预测方法，以一张一张读入进行预测，解决之前的大部分涂色失败问题。效果如下：
-![](https://github.com/yearing1017/UAVI_Seg_Pytorch/blob/master/image/DUIBI.jpg)
